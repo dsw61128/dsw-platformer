@@ -20,6 +20,6 @@ public class spike : MonoBehaviour
     {
         //Destroy(collision.gameObject);
 
-        collision.GetComponent<HealthComponent>().AddDamage(damage);
+        collision.GetComponent<Health_Component>().AddDamage(damage);
     }
 }
