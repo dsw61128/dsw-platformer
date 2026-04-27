@@ -74,6 +74,22 @@ public class Player_motor : MonoBehaviour
 
     }
 
+
+    private void HandlePlayerXmovement()
+    {
+        if (direction.x != 0)
+        {
+            rigidbody2D.AddForce(new Vector2(direction.x * speed, 0));
+
+        }
+        else if (direction.x != 0)
+        {
+            rigidbody2D.AddForce(new Vector2(-rigidbody2D.linearVelocityX * stoppingForce, 0));
+        }
+
+    }
+
+
     void OnMove(InputValue value)
 
     {

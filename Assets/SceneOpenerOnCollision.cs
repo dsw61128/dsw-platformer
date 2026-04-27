@@ -1,0 +1,11 @@
+using UnityEngine;
+
+public class SceneOpenerOnCollision : SceneOpener
+{
+    public string NextLevelName;
+    private void OnTriggerEnter2D(Collider2D  collider)
+    {
+        OpenScene(NextLevelName);
+    }
+}
+    

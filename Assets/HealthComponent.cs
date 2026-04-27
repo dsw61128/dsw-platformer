@@ -1,6 +1,7 @@
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Health_Component : MonoBehaviour
 {
@@ -38,6 +39,7 @@ public class Health_Component : MonoBehaviour
         if (health <= 0)
         {
             Destroy(gameObject);
+            SceneManager.LoadScene("EndGame");
         }
 
     }
@@ -60,4 +62,6 @@ public class Health_Component : MonoBehaviour
         OnHealthChanged?.Invoke(health, HealingValue);
         Debug.Log(health);
     }
+
+    
 }
