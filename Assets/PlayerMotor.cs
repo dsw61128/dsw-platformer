@@ -13,7 +13,7 @@ public class Player_motor : MonoBehaviour
 
     public float speed = 10;
 
-    public float jumpForce = 10;
+    public float jumpForce = 7;
 
     public float maxSpeed = 5;
 
@@ -25,6 +25,14 @@ public class Player_motor : MonoBehaviour
 
     private bool canJump = true;
 
+    public int MaxJump = 2;
+
+    private int currentJumps;
+   
+    private Animator animator;
+
+    private float initScale;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     void Start()
@@ -32,6 +40,8 @@ public class Player_motor : MonoBehaviour
     {
 
         rigidbody2D = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+        initScale = transform.localScale.x;
 
     }
 
@@ -40,21 +50,34 @@ public class Player_motor : MonoBehaviour
     void FixedUpdate()
 
     {
+        if(direction.x > 0)
+        {
+            transform.localScale = new Vector3(initScale, transform.localScale.y, transform.localScale.z);
+        }
+        else if (direction.x < 0)
+        {
+            transform.localScale = new Vector3(-initScale, transform.localScale.y, transform.localScale.z);
+        }
 
         if (direction.x != 0)
 
         {
 
             rigidbody2D.AddForce(new Vector2(direction.x * speed, 0));
+            animator.SetBool("IsMoving", true);
 
         }
-
+        
         else if (rigidbody2D.linearVelocity.x != 0)
 
         {
 
             rigidbody2D.AddForce(new Vector2(-rigidbody2D.linearVelocityX * stoppingForce, 0));
 
+        }
+        if(direction.x == 0)
+        {
+            animator.SetBool("IsMoving", false);
         }
 
         if(!canDash)
@@ -95,6 +118,7 @@ public class Player_motor : MonoBehaviour
             rigidbody2D.AddForce(new Vector2(-rigidbody2D.linearVelocityX * stoppingForce, 0));
         }
 
+
     }
 
 
@@ -121,7 +145,12 @@ public class Player_motor : MonoBehaviour
 
             rigidbody2D.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
 
-            canJump = false;
+            currentJumps++;
+            if(currentJumps >= MaxJump)
+            {
+                canJump = false;
+                currentJumps = 0;  
+            }
 
         }
 
@@ -130,8 +159,17 @@ public class Player_motor : MonoBehaviour
     private void OnDash()
     {
         //Debug.Log("Dashing");
-        rigidbody2D.AddForce(new Vector2(direction.x * dashForce,0), ForceMode2D.Impulse);
-        StartCoroutine(ResetDash(1));
+        if (canDash)
+        {
+            rigidbody2D.AddForce(new Vector2(direction.x * dashForce, 0), ForceMode2D.Impulse);
+        }
+        else
+        {
+
+            rigidbody2D.AddForce(new Vector2(direction.x * dashForce, 0), ForceMode2D.Impulse);
+        }
+        canDash = false;   
+            StartCoroutine(ResetDash(1));
     }
 
     IEnumerator ResetDash(float cooldown)

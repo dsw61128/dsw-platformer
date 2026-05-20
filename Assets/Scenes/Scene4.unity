@@ -6051,6 +6051,7 @@ MonoBehaviour:
   jumpForce: 10
   maxSpeed: 5
   stoppingForce: 5
+  dashForce: 10
 --- !u!114 &1386112244
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6177,7 +6178,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &1386112248
 BoxCollider2D:
   m_ObjectHideFlags: 0
