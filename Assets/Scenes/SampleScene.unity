@@ -990,7 +990,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.97515625, y: 0.8875, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -2126,8 +2126,8 @@ MonoBehaviour:
   jumpForce: 8
   maxSpeed: 5
   stoppingForce: 5
-  dashForce: 10
-  MaxJump: 2
+  dashforce: 10
+  maxJump: 2
 --- !u!114 &1386112244
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2222,8 +2222,8 @@ Transform:
   m_GameObject: {fileID: 1386112242}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.030029297, y: -1.8800049, z: 0}
-  m_LocalScale: {x: 7, y: 7, z: 7}
+  m_LocalPosition: {x: 0.02, y: -3.44, z: 0}
+  m_LocalScale: {x: 5.012, y: 4.4694996, z: 7}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
